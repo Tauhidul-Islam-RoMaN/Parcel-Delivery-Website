@@ -58,7 +58,7 @@ const NavBar = () => {
                             </ul>
                         </div>
                         <Link to='/' className="flex items-center">
-                            <span className="self-center text-2xl ml-1 md:ml-10 font-semibold whitespace-nowrap dark:text-white">ShipSwiftly.com</span>
+                            <span className="self-center text-2xl ml-1 md:ml-10 font-semibold whitespace-nowrap dark:text-white">ShipSwiftly</span>
                         </Link>
                     </div>
                     <div className=" hidden md:flex">

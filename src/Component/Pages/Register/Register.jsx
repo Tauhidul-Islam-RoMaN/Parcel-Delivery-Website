@@ -57,8 +57,6 @@ const Register = () => {
                             <option value="Delivery Man">Delivery Man</option>
                         </select>
                     </div>
-                        {errors.email && <span className="text-red-600">email is required</span>}
-
                     </div>
                     <div className="form-control">
                         <label className="label">

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
 
@@ -10,13 +11,11 @@ const Login = () => {
     }
 
 
-    // const { register, handleSubmit } = useForm()
-    // const onSubmit = (data) => console.log(data)
 
     return (
         <div className="mx-auto max-w-xl rounded-xl my-10 ">
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <h2 className="text-3xl font-xl text-center mt-10"> Register! </h2>
+                <h2 className="text-3xl font-xl text-center mt-10"> Login! </h2>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="card-body">
@@ -55,6 +54,8 @@ const Login = () => {
                 <div>
                     <h2 className="text-lg text-center mb-6">New to the Website? Please <Link to='/register'><span className="text-blue-600">Register</span></Link> </h2>
                 </div>
+                <div className="divider w-3/4 mx-auto">Social Login</div>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );

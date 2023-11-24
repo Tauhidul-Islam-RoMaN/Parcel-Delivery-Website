@@ -1,26 +1,33 @@
 [
     {
-        "name": "Real-Time Parcel Tracking",
-        "description": "Instantly track parcels in real-time for enhanced transparency."
+      "name": "Real-Time Parcel Tracking",
+      "description": "Instantly track parcels in real-time for enhanced transparency.",
+      "img": "https://i.ibb.co/Bqk36Pw/7717880-3696913.jpg"
     },
     {
-        "name": "Secure Parcel Handling",
-        "description": "Ensure parcel safety with tamper-evident packaging and security notifications."
+      "name": "Secure Parcel Handling",
+      "description": "Ensure parcel safety with tamper-evident packaging and security notifications.",
+      "img": "https://i.ibb.co/yPHrX1T/3333449.jpg"
     },
     {
-        "name": "Express Delivery Options",
-        "description": "Offer super-fast delivery choices, including express and same-day services."
+      "name": "Express Delivery Options",
+      "description": "Offer super-fast delivery choices, including express and same-day services.",
+      "img": "https://i.ibb.co/YWjNPGP/2719784-382715-PCGRW9-187.jpg"
     },
     {
-        "name": "User-Friendly Mobile App",
-        "description": "Provide a seamless mobile app for easy parcel management and tracking."
+      "name": "User-Friendly Mobile App",
+      "description": "Provide a seamless mobile app for easy parcel management and tracking.",
+      "img": "https://i.ibb.co/fvcxwVz/7771777-3699591.jpg"
     },
     {
-        "name": "Customized Delivery Preferences",
-        "description": "Allow users to customize delivery times, instructions, and address preferences."
+      "name": "Customized Delivery Preferences",
+      "description": "Allow users to customize delivery times, instructions, and address preferences.",
+      "img": "https://i.ibb.co/s53q58F/11878958-Online-Shoping-29.jpg"
     },
     {
-        "name": "Customer Reviews and Ratings",
-        "description": "Enable customers to leave feedback, building credibility and addressing concerns."
+      "name": "Customer Reviews and Ratings",
+      "description": "Enable customers to leave feedback, building credibility and addressing concerns.",
+      "img": "https://i.ibb.co/MhhH1hn/red-delivery-car-deliver-express-shipping-fast-delivery-background-3d-rendering-illustration.jpg"
     }
-]
+  ]
+  

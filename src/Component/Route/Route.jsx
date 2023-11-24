@@ -6,41 +6,90 @@ import Notification from "../Pages/Notification/Notification";
 import Dashboard from "../Layout/Dashboard";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import AdminDashboard from "../Dashboard/Dashboard/AdminDashboard";
+import AllDeliveryMan from "../Dashboard/Admin/AllDeliveryMan/AllDeliveryMan";
+import Statistics from "../Dashboard/Admin/Statistics/Statistics";
+import AllParcel from "../Dashboard/Admin/AllParcel/AllParcel";
+import AllUsers from "../Dashboard/Admin/AllUsers/AllUsers";
+import BookAParcel from "../Dashboard/User/BookAParcel/BookAParcel";
+import MyParcel from "../Dashboard/User/MyParcel/MyParcel";
+import MyProfile from "../Dashboard/User/MyProfile/MyProfile";
+import MyDeliveryList from "../Dashboard/DeliveryMan/MyDeliveryList/MyDeliveryList";
+import MyReview from "../Dashboard/DeliveryMan/MyReview/MyReview";
+import UpdateParcel from "../Dashboard/User/UpdateParcel/UpdateParcel";
 
 const myCreatedRoute = createBrowserRouter([
     {
         path: '/',
-        errorElement:<ErrorElement></ErrorElement>,
-        element:<MainLayout></MainLayout>,
+        errorElement: <ErrorElement></ErrorElement>,
+        element: <MainLayout></MainLayout>,
         children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/notification',
+                path: '/notification',
                 element: <Notification></Notification>
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
-                path:'/register',
+                path: '/register',
                 element: <Register></Register>
             },
         ]
     },
     {
-        path: '/',
-        errorElement:<ErrorElement></ErrorElement>,
-        element:<Dashboard></Dashboard>,
+        path: '/dashboard',
+        errorElement: <ErrorElement></ErrorElement>,
+        element: <Dashboard></Dashboard>,
         children: [
+            // addmin route
             {
-                path:'/dashboard',
-                element: <AdminDashboard></AdminDashboard>
+                path: 'statistics',
+                element: <Statistics></Statistics>
             },
+            {
+                path: 'allParcel',
+                element: <AllParcel></AllParcel>
+            },
+            {
+                path: 'allDeliveryMan',
+                element: <AllDeliveryMan></AllDeliveryMan>
+            },
+            {
+                path: 'allUsers',
+                element: <AllUsers></AllUsers>
+            },
+            // user route
+            {
+                path: 'booking',
+                element: <BookAParcel></BookAParcel>
+            },
+            {
+                path: 'updateParcel',
+                element: <UpdateParcel></UpdateParcel>
+            },
+            {
+                path: 'myParcel',
+                element: <MyParcel></MyParcel>
+            },
+            {
+                path: 'myProfile',
+                element: <MyProfile></MyProfile>
+            },
+            // delivery man Profile
+            {
+                path: 'deliveryList',
+                element: <MyDeliveryList></MyDeliveryList>
+            },
+            {
+                path: 'review',
+                element: <MyReview></MyReview>
+            },
+
         ]
     },
 ])
