@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Abdul Rahman",
+        "image": "https://i.ibb.co/BsXtpyS/1.jpg",
+        "parcels_delivered": 150,
+        "average_ratings": 4.5
+    },
+    {
+        "name": "Mohammed Ali",
+        "image": "https://i.ibb.co/VWpYzC1/2.jpg",
+        "parcels_delivered": 200,
+        "average_ratings": 4.8
+    },
+    {
+        "name": "Kamal Hasan",
+        "image": "https://i.ibb.co/wryCP2y/3.jpg",
+        "parcels_delivered": 160,
+        "average_ratings": 4.4
+    },
+    {
+        "name": "Rahim Khan",
+        "image": "https://i.ibb.co/N7KkcbJ/4.jpg",
+        "parcels_delivered": 130,
+        "average_ratings": 4.3
+    },
+    {
+        "name": "Imran Siddique",
+        "image": "https://i.ibb.co/GR5gtgK/5.jpg",
+        "parcels_delivered": 175,
+        "average_ratings": 4.7
+    },
+    {
+        "name": "Farhan Ahmed",
+        "image": "https://i.ibb.co/7G23hV4/6.jpg",
+        "parcels_delivered": 145,
+        "average_ratings": 4.6
+    },
+    {
+        "name": "Zubair Khan",
+        "image": "https://i.ibb.co/dM4LP1H/7.jpg",
+        "parcels_delivered": 190,
+        "average_ratings": 4.9
+    },
+    {
+        "name": "Monirul Islam",
+        "image": "https://i.ibb.co/ygmz6yS/8.jpg",
+        "parcels_delivered": 190,
+        "average_ratings": 4.9
+    }
+]
