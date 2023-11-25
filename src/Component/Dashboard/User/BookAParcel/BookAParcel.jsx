@@ -4,13 +4,14 @@ import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
 const BookAParcel = () => {
 
-    const today = new Date().toISOString().split("T")[0]
+    const today = new Date().toISOString().split("T")[0];
     const tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
 
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
 
-    const { register, reset , handleSubmit, setValue, formState: { errors } } = useForm()
+
+    const { register, reset, handleSubmit, setValue, formState: { errors } } = useForm()
 
     const handleWeightChange = (selectedWeight) => {
         const price = {
@@ -108,8 +109,9 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Parcel Weight</span>
                         </label>
-                        <select defaultValue="default" {...register("weight",  { required: true })} onChange={(e) => {handleWeightChange(e.target.value);
-          }} className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
+                        <select defaultValue="default" {...register("weight", { required: true })} onChange={(e) => {
+                            handleWeightChange(e.target.value);
+                        }} className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
                             <option disabled value="default">Select a category</option>
                             <option value="1kg">1 Kg</option>
                             <option value="2kg">2 Kg</option>

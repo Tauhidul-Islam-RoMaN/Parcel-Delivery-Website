@@ -70,12 +70,14 @@ const myCreatedRoute = createBrowserRouter([
                 element: <BookAParcel></BookAParcel>
             },
             {
-                path: 'updateParcel',
-                element: <UpdateParcel></UpdateParcel>
+                path: 'updateParcel/:id',
+                element: <UpdateParcel></UpdateParcel>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
                 path: 'myParcel',
-                element: <MyParcel></MyParcel>
+                element: <MyParcel></MyParcel>,
+                
             },
             {
                 path: 'myProfile',

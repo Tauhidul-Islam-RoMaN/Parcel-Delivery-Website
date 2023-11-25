@@ -1,17 +1,56 @@
 import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import useAuth from "../../../Hook/useAuth";
+import useAxiosPublic from "../../../Hook/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm()
+    const { user, profileUpdate } = useAuth()
+    const axiosPublic = useAxiosPublic()
 
     const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
     const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
-    
-    const onSubmit = (data) => {
+
+    const onSubmit = async (data) => {
         console.log(data)
+        // upload image to imgbb and then get the url
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hoisting_api, imageFile, {
+            headers: {
+                'content-Type': 'multipart/form-data'
+            }
+        })
+        if (res.data.success) {
+            profileUpdate(user?.displayName, res.data?.data?.display_url )
+            .then(res => {
+                console.log("photo updated", res);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Photo updated Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => console.log(err));
     }
+}
     return (
         <div>
+            <div>
+                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <img className="rounded-t-lg" src={user?.photoURL} alt="" />
+                    </a>
+                    <div className="p-5">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> Welcome, {user?.displayName}</h5>
+                        <h5 className="mb-2 text-2xl font-medium tracking-tight text-gray-900 dark:text-white"> {user?.email}</h5>
+                        <p className="font-bold ">Want to update your profile photo? Upload your photo</p>
+                    </div>
+                </div>
+
+            </div>
             <form
                 onSubmit={handleSubmit(onSubmit)}
             >
@@ -21,8 +60,7 @@ const MyProfile = () => {
                         {...register('image', { required: true })}
                         className="file-input w-full max-w-xs" />
                 </div>
-
-                <button className="btn">Add items <FaUtensils className="ml-4"></FaUtensils> </button>
+                <button className="btn">Update Photo <FaUsers className="ml-4"></FaUsers> </button>
             </form>
         </div>
     );

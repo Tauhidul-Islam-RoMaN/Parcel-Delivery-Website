@@ -1,11 +1,51 @@
+import { useEffect, useState } from 'react';
 import { useCountUp } from 'react-countup';
 
 
 
 const HomeStatistics = () => {
-  useCountUp({ ref: 'Booked', end: 950, duration: 20, delay: 1 });
-  useCountUp({ ref: 'Delivered', end: 750, duration: 20, delay: 1 });
-  useCountUp({ ref: 'Users', end: 1000, duration: 20, delay: 1 });
+
+  const [users, setUsers] = useState([])
+  const [booking, setBooking] = useState([])
+  const [delivered, setDelivered] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/users')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setUsers(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/bookings')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setBooking(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setDelivered(data)
+      })
+  }, [])
+
+
+  const totalUser = users.length
+  const totalBooking = booking.length
+  const totalDelivered = delivered.length
+  console.log(totalBooking,totalUser);
+
+
+  useCountUp({ ref: 'Users', end: totalUser, duration: 10, delay: 1 });
+  useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 1 });
+  useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 1 });
   return (
     <div className='bg-[#3bbcc0] flex gap-10 flex-col lg:flex-row items-center justify-evenly py-10'>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
