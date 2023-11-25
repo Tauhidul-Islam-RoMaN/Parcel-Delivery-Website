@@ -138,5 +138,220 @@
         "name": "Phone",
         "email": "phone@mobile.com",
         "role": "user"
+    },
+    {
+        "name": "Delivery Man",
+        "email": "deliveryman@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Cha Coffee",
+        "email": "cha@coffee.com",
+        "role": "user"
+    },
+    {
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "role": "admin"
+    },
+    {
+        "name": "Phone",
+        "email": "phone@mobile.com",
+        "role": "user"
+    }
+],
+[
+    {
+        "name": "Sohail Karim",
+        "email": "sohail.karim@example.com",
+        "role": "delivery-man",
+        "number": "01712345678"
+    },
+    {
+        "name": "Jamil Ahmed",
+        "email": "jamil.ahmed@example.com",
+        "role": "user",
+        "number": "01912345678"
+    },
+    {
+        "name": "Zubair Khan",
+        "email": "zubair.khan@example.com",
+        "role": "delivery-man",
+        "number": "01795345678"
+    },
+    {
+        "name": "Nasir Akhtar",
+        "email": "nasir.akhtar@example.com",
+        "role": "delivery-man",
+        "number": "01782345678"
+    },
+    {
+        "name": "Rafiul Khan",
+        "email": "rafiul.khan@example.com",
+        "role": "user",
+        "number": "01985345678"
+    },
+    {
+        "name": "Arifur Rahman",
+        "email": "arifur.rahman@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Abdul Rahman",
+        "email": "abdul.rahman@example.com",
+        "role": "delivery-man",
+        "number": "01795345678"
+    },
+    {
+        "name": "Shahidul Islam",
+        "email": "shahidul.islam@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Mahmud Uddin",
+        "email": "mahmud.uddin@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Ahsan Ahmed",
+        "email": "ahsan.ahmed@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Nurul Haque",
+        "email": "nurul.haque@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Siddique Ahmed",
+        "email": "siddique.ahmed@example.com",
+        "role": "delivery-man",
+        "number": "01795345678"
+    },
+    {
+        "name": "Mizanur Rahman",
+        "email": "mizanur.rahman@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Imran Siddique",
+        "email": "imran.siddique@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Mustafiz Karim",
+        "email": "mustafiz.karim@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Nazmul Akhtar",
+        "email": "nazmul.akhtar@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Harun Khan",
+        "email": "harun.khan@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Tareq Uddin",
+        "email": "tareq.uddin@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Naimul Chowdhury",
+        "email": "naimul.chowdhury@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Farhan Ahmed",
+        "email": "farhan.ahmed@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Zahirul Islam",
+        "email": "zahirul.islam@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Tanjim Ahmed",
+        "email": "tanjim.ahmed@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Monirul Islam",
+        "email": "monirul.islam@example.com",
+        "role": "delivery-man",
+        "number": "01775345678"
+    },
+    {
+        "name": "Asadur Rahman",
+        "email": "asadur.rahman@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Jabed Ahmed",
+        "email": "jabed.ahmed@example.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Mohammed Ali",
+        "email": "mohammed.ali@example.com",
+        "role": "delivery-man",
+        "number": "01795345678"
+    },
+    {
+        "name": "Rahim Khan",
+        "email": "rahim.khan@example.com",
+        "role": "user",
+        "number": "01985345678"
+    },
+    {
+        "name": "Phone",
+        "email": "phone@mobile.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Delivery Man",
+        "email": "deliveryman@example.com",
+        "role": "delivery-man",
+        "number": "01795345678"
+    },
+    {
+        "name": "Cha Coffee",
+        "email": "cha@coffee.com",
+        "role": "user",
+        "number": "01975345678"
+    },
+    {
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "role": "admin",
+        "number": "01795345678"
+    },
+    {
+        "name": "Phone",
+        "email": "phone@mobile.com",
+        "role": "user",
+        "number": "01975345678"
     }
 ]
+

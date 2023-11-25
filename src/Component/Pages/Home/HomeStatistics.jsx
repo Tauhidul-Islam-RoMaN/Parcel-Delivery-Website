@@ -43,9 +43,9 @@ const HomeStatistics = () => {
   console.log(totalBooking,totalUser);
 
 
-  useCountUp({ ref: 'Users', end: totalUser, duration: 10, delay: 1 });
-  useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 1 });
-  useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 1 });
+  useCountUp({ ref: 'Users', end: totalUser, duration: 10, delay: 0 });
+  useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 0 });
+  useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 0 });
   return (
     <div className='bg-[#3bbcc0] flex gap-10 flex-col lg:flex-row items-center justify-evenly py-10'>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
