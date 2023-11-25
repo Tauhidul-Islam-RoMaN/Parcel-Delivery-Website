@@ -1,14 +1,53 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hook/useAuth";
+import useAxiosPublic from "../../../Hook/useAxiosPublic";
+import Swal from "sweetalert2";
 const BookAParcel = () => {
 
+    const today = new Date().toISOString().split("T")[0]
+    const tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+
     const { user } = useAuth()
+    const axiosPublic = useAxiosPublic()
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm()
-    const today = new Date().toISOString().split("T")[0]
+
+
 
     const onSubmit = (data) => {
-        console.log(data)
+        const bookingInfo = {
+            address: data.address,
+            deliveryDate: data.deliveryDate,
+            bookingDate: today,
+            email: data.email,
+            latitude: data.latitude,
+            longitude: data.longitude,
+            name: data.name,
+            phone: data.phone,
+            price: data.price,
+            receiversName: data.receiversName,
+            receiversPhone: data.receiversPhone,
+            type: data.type,
+            weight: data.weight,
+            status: "pending"
+        }
+        axiosPublic.post('/bookings', bookingInfo)
+        .then(res =>{
+            if (res.data.insertedId) {
+                reset()
+                console.log('booking added to the server');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Booking Created Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        })
+        .catch(err => console.log(err))
+
+        console.log(bookingInfo)
     }
 
 
@@ -39,7 +78,7 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Phone Number</span>
                         </label>
-                        <input type="number" name="phone"   {...register("phone", { required: true, maxLength:11, minLength:11 })} placeholder="01*********"
+                        <input type="number" name="phone"   {...register("phone", { required: true, maxLength: 11, minLength: 11 })} placeholder="01*********"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                         {errors.phone && <span className="text-red-600">Please Provide valid Phone Number</span>}
@@ -69,9 +108,19 @@ const BookAParcel = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
+                            <span className="label-text">Receiver's Name</span>
+                        </label>
+                        <input type="text" name="receiversName" {...register("receiversName", { required: true })} placeholder="Receiver's name"
+                            className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
+                        />
+                        {errors.receiversName && <span className="text-red-600">Receiver,s Name  is Required</span>}
+
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
                             <span className="label-text">Receiver's Phone Number</span>
                         </label>
-                        <input type="number" name="receiversPhone"   {...register("receiversPhone", { required: true, maxLength:11, minLength:11 })} placeholder="01*********"
+                        <input type="number" name="receiversPhone"   {...register("receiversPhone", { required: true, maxLength: 11, minLength: 11 })} placeholder="01*********"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                         {errors.receiversPhone && <span className="text-red-600">Please Provide valid Phone Number</span>}
@@ -90,10 +139,10 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Requested Delivery Date</span>
                         </label>
-                        <input type="date" name="date"   {...register("date", { required: true })} min={today} placeholder="Delivery Date"
+                        <input type="date" name="deliveryDate"   {...register("deliveryDate", { required: true })} min={tomorrow} placeholder="Expected Delivery Date"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
-                        {errors.date && <span className="text-red-600">Parcel delivery date is required</span>}
+                        {errors.deliveryDate && <span className="text-red-600">Expected delivery date is required</span>}
 
                     </div>
                     <div className="form-control">

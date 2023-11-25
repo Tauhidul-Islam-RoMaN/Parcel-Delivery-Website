@@ -16,6 +16,7 @@ import MyProfile from "../Dashboard/User/MyProfile/MyProfile";
 import MyDeliveryList from "../Dashboard/DeliveryMan/MyDeliveryList/MyDeliveryList";
 import MyReview from "../Dashboard/DeliveryMan/MyReview/MyReview";
 import UpdateParcel from "../Dashboard/User/UpdateParcel/UpdateParcel";
+import PrivateRoute from "./PrivateRoute";
 
 const myCreatedRoute = createBrowserRouter([
     {
@@ -44,9 +45,9 @@ const myCreatedRoute = createBrowserRouter([
     {
         path: '/dashboard',
         errorElement: <ErrorElement></ErrorElement>,
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
-            // addmin route
+            // admin route
             {
                 path: 'statistics',
                 element: <Statistics></Statistics>
