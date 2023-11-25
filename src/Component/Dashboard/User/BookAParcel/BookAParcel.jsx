@@ -10,9 +10,18 @@ const BookAParcel = () => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
 
-    const { register, reset, handleSubmit, formState: { errors } } = useForm()
+    const { register, reset , handleSubmit, setValue, formState: { errors } } = useForm()
 
+    const handleWeightChange = (selectedWeight) => {
+        const price = {
+            '1kg': 50,
+            '2kg': 100,
+            'more than 2kg': 150,
+        };
 
+        // Update the "Price" input value using setValue
+        setValue('price', price[selectedWeight] || '');
+    };
 
     const onSubmit = (data) => {
         const bookingInfo = {
@@ -32,20 +41,21 @@ const BookAParcel = () => {
             status: "pending"
         }
         axiosPublic.post('/bookings', bookingInfo)
-        .then(res =>{
-            if (res.data.insertedId) {
-                reset()
-                console.log('booking added to the server');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Booking Created Successful",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                if (res.data.insertedId) {
+                    console.log(res.data);
+                    console.log('booking added to the server');
+                    reset()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Booking Created Successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => console.log(err))
 
         console.log(bookingInfo)
     }
@@ -98,7 +108,8 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Parcel Weight</span>
                         </label>
-                        <select defaultValue="default" {...register("weight", { required: true })} className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
+                        <select defaultValue="default" {...register("weight",  { required: true })} onChange={(e) => {handleWeightChange(e.target.value);
+          }} className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
                             <option disabled value="default">Select a category</option>
                             <option value="1kg">1 Kg</option>
                             <option value="2kg">2 Kg</option>
@@ -149,7 +160,7 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Delivery Address Latitude</span>
                         </label>
-                        <input type="number" name="latitude"   {...register("latitude", { required: true })} placeholder="21.1213655476"
+                        <input type="number" step="0.000000001" name="latitude"   {...register("latitude", { required: true })} placeholder="21.1213655476"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                         {errors.latitude && <span className="text-red-600">Delivery address latitude is required</span>}
@@ -158,7 +169,7 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Delivery Address Latitude</span>
                         </label>
-                        <input type="number" name="longitude"   {...register("longitude", { required: true })} placeholder="21.1213655476"
+                        <input type="number" name="longitude" step="0.000000001"   {...register("longitude", { required: true })} placeholder="21.1213655476"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                         {errors.longitude && <span className="text-red-600">Delivery address longitude is required</span>}
@@ -168,7 +179,7 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="number" name="price"   {...register("price", { required: true })} placeholder="Price"
+                        <input type="number" name="price" readOnly  {...register("price", { required: true })} placeholder="Price"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                     </div>
