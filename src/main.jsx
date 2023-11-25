@@ -4,13 +4,18 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import myCreatedRoute from './Component/Route/Route'
 import AuthProvider from './Component/AuthProvider/AuthProvider'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={myCreatedRoute}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={myCreatedRoute}>
 
-      </RouterProvider>
-    </AuthProvider>
+        </RouterProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

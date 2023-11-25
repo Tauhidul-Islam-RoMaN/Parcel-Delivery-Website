@@ -6,14 +6,12 @@ const TopDeliveryMan = () => {
     const [topDeliveryMan, setTopDeliveryMan] = useState()
 
     useEffect(() => {
-        fetch('/deliveryman.json')
+        fetch('/public/deliveryman.json')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setTopDeliveryMan(data)
             })
     }, [topDeliveryMan])
-    console.log(topDeliveryMan);
     return (
         <div className="bg-[#3bbcc0] py-16">
             <h2 className='font-bold text-3xl text-center py-10'> --Meet Our Top Delivery Man-- </h2>

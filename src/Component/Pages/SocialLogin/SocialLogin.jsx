@@ -1,9 +1,14 @@
 import useAuth from "../../Hook/useAuth";
 import { FaGoogle } from "react-icons/fa";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
     const { googleLogin } = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const navigate= useNavigate()
+    const location = useLocation()
 
     const handleGoogleLogin = () => {
         googleLogin()
@@ -12,10 +17,17 @@ const SocialLogin = () => {
             const userInfo = {
                 name: res.user?.displayName || '',
                 email: res.user?.email || '',
-                photo: res.user?.photoURL || '',
                 role: "user"
             }
             console.log(userInfo);
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                console.log(res.data);
+                navigate(location?.state ? location?.state : '/')
+            })
+        })
+        .catch(err => {
+            console.log(err);
         })
 
     }

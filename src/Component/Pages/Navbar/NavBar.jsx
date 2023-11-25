@@ -69,7 +69,7 @@ const NavBar = () => {
                     <div className="navbar-end">
                         {user?.photoURL ?
                             <div className="dropdown dropdown-end">
-                                <label tabIndex={0} className="avatar">
+                                <label tabIndex={0} className="">
                                     <img className="md:w-24 w-14 md:mr-10 rounded-full" src={user?.photoURL} alt="" />
                                 </label>
                                 <ul tabIndex={0} className="flex items-center justify-center text-center flex-col gap-1 dropdown-content mt-4 z-10 p-4 shadow bg-[#3bbcc0] rounded-box w-40">

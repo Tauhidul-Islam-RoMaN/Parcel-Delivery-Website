@@ -4,6 +4,7 @@ import { AiOutlineProfile } from "react-icons/ai";
 import { BiPurchaseTagAlt } from "react-icons/bi";
 import { FcStatistics } from "react-icons/fc";
 import { NavLink, Outlet } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 
 const adminRoute =
     <>
@@ -29,6 +30,7 @@ const deliveryManRoute =
     </>
 
 const Dashboard = () => {
+    const {user} =useAuth()
     return (
         <>
             <div className="flex max-w-6xl flex-col md:flex-row mx-auto">

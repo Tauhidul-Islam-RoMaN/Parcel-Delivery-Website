@@ -1,0 +1,142 @@
+[
+    {
+        "name": "Sohail Karim",
+        "email": "sohail.karim@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Jamil Ahmed",
+        "email": "jamil.ahmed@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Zubair Khan",
+        "email": "zubair.khan@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Nasir Akhtar",
+        "email": "nasir.akhtar@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Rafiul Khan",
+        "email": "rafiul.khan@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Arifur Rahman",
+        "email": "arifur.rahman@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Abdul Rahman",
+        "email": "abdul.rahman@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Shahidul Islam",
+        "email": "shahidul.islam@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Mahmud Uddin",
+        "email": "mahmud.uddin@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Ahsan Ahmed",
+        "email": "ahsan.ahmed@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Nurul Haque",
+        "email": "nurul.haque@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Siddique Ahmed",
+        "email": "siddique.ahmed@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Mizanur Rahman",
+        "email": "mizanur.rahman@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Imran Siddique",
+        "email": "imran.siddique@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Mustafiz Karim",
+        "email": "mustafiz.karim@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Nazmul Akhtar",
+        "email": "nazmul.akhtar@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Harun Khan",
+        "email": "harun.khan@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Tareq Uddin",
+        "email": "tareq.uddin@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Naimul Chowdhury",
+        "email": "naimul.chowdhury@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Farhan Ahmed",
+        "email": "farhan.ahmed@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Zahirul Islam",
+        "email": "zahirul.islam@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Tanjim Ahmed",
+        "email": "tanjim.ahmed@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Monirul Islam",
+        "email": "monirul.islam@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Asadur Rahman",
+        "email": "asadur.rahman@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Jabed Ahmed",
+        "email": "jabed.ahmed@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Mohammed Ali",
+        "email": "mohammed.ali@example.com",
+        "role": "delivery-man"
+    },
+    {
+        "name": "Rahim Khan",
+        "email": "rahim.khan@example.com",
+        "role": "user"
+    },
+    {
+        "name": "Phone",
+        "email": "phone@mobile.com",
+        "role": "user"
+    }
+]

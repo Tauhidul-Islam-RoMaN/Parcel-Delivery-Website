@@ -1,13 +1,34 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAuth from "../../Hook/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+
+    const {login} =useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
+        login(data.email, data.password)
+        .then((res) =>{
+            console.log('logger user', res.user);
+            reset()
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Login Successful",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate(location?.state ? location?.state : '/')
+        })
+        .catch(err => console.log(err))
+
     }
 
 
