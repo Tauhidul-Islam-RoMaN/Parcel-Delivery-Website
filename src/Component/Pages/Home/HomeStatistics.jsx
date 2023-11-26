@@ -18,6 +18,7 @@ const HomeStatistics = () => {
       })
   }, [])
 
+  
   useEffect(() => {
     fetch('http://localhost:5000/bookings')
       .then(res => res.json())
@@ -43,9 +44,55 @@ const HomeStatistics = () => {
   console.log(totalBooking,totalUser);
 
 
-  useCountUp({ ref: 'Users', end: totalUser, duration: 10, delay: 0 });
-  useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 0 });
-  useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 0 });
+  useCountUp({ ref: 'Users', end: totalUser, duration: 10, delay: 2 });
+  useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 2 });
+  useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 2 });
+
+  // const axiosPublic =useAxiosPublic()
+  // const {data : users, refetch ,isLoading} = useQuery({
+  //     queryKey: ['users'],
+  //     queryFn: async () =>{
+  //         const result = await axiosPublic.get('/users')
+  //         const data = await result.data
+  //         return data
+  //     }
+  // })
+
+  // const {data : bookings } = useQuery({
+  //     queryKey: ['bookings'],
+  //     queryFn: async () =>{
+  //         const result = await axiosPublic.get('/bookings')
+  //         const data = await result.data
+  //         return data
+  //     }
+  // })
+  // const {data : delivered } = useQuery({
+  //     queryKey: ['booking'],
+  //     queryFn: async () =>{
+  //         const result = await axiosPublic.get('/bookings')
+  //         const data = await result.data
+  //         return data
+  //     }
+  // })
+  // console.log(users,bookings,delivered);
+ 
+  // refetch()
+
+  // const totalUser = users?.length
+  // const totalBooking = bookings?.length
+  // const totalDelivered = delivered?.length
+  // console.log(totalBooking,totalUser);
+
+
+  // useCountUp({ ref: 'Users', end: totalUser,  duration: 10, delay: 0 });
+  // useCountUp({ ref: 'Booked', end: totalBooking, duration: 10, delay: 0 });
+  // useCountUp({ ref: 'Delivered', end: totalDelivered, duration: 10, delay: 0 });
+
+  //   if (isLoading) {
+  //   return <div className="flex justify-center items-center text-5xl"><span className="loading loading-spinner text-accent"></span></div>
+  // }
+
+
   return (
     <div className='bg-[#3bbcc0] flex gap-10 flex-col lg:flex-row items-center justify-evenly py-10'>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
