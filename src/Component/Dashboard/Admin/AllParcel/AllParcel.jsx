@@ -64,7 +64,7 @@ const AllParcel = () => {
             .then(res => {
                 console.log('booking updated', res.data);
                 if (res.data.modifiedCount > 0) {
-                    refetch()
+                    refetchBooking()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -85,13 +85,11 @@ const AllParcel = () => {
         console.log(startDate,endDate);
         console.log(typeof(startDate,endDate));
 
-
         axiosPublic.get(`/bookings?startDate=${startDate}&endDate=${endDate}`)
         .then(response => {
             const data = response.data;
             console.log(data);
             setSortedBooking(data)
-
           })
           .catch(error => {
             console.error(error);
@@ -180,7 +178,7 @@ const AllParcel = () => {
                                                             defaultValue="default"
                                                             name="assignedMan" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                                                             id="">
-                                                            <option disabled value="default" >Select a delivery man</option>
+                                                            <option  value="default" >Select a delivery man</option>
                                                             {deliveryMan.map((man) => (
                                                                 <option key={man.email} value={man.name}>
                                                                     {man.name}

@@ -23,12 +23,12 @@ const adminRoute =
 //         <li> <NavLink to='/dashboard/myProfile' className="text-lg"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
 //     </>
 
-// const deliveryManRoute =
-//     <>
-//         <h2 className="text-2xl font-medium"> Delivery Man Dashboard </h2>
-//         <li> <NavLink to='/dashboard/deliveryList' className="text-lg"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
-//         <li> <NavLink to='/dashboard/review' className="text-lg"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
-//     </>
+const deliveryManRoute =
+    <>
+        <h2 className="text-2xl font-medium"> Delivery Man Dashboard </h2>
+        <li> <NavLink to='/dashboard/deliveryList' className="text-lg"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
+        <li> <NavLink to='/dashboard/review' className="text-lg"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
+    </>
 
 const Dashboard = () => {
     const { user } = useAuth()

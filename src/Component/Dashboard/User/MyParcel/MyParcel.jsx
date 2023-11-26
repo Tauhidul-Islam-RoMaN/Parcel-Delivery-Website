@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import useBooking from "../../../Hook/useBooking";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 
 const MyParcel = () => {
     const axiosPublic = useAxiosPublic()
+    const [selectedItem, setSelectedItem] = useState()
+    const [sortedStatus, setSortedStatus] = useState()
 
     const [bookings, refetch] = useBooking()
     refetch()
@@ -57,28 +60,52 @@ const MyParcel = () => {
             .catch(err => console.log(err))
 
     }
-    const handleSort=() =>{
 
+    const handleChange = (e) => {
+        e.preventDefault()
+        const status = e.target.value
+        setSelectedItem(status)
+
+    }
+
+    const handleSort = (e) => {
+        e.preventDefault()
+        const status = selectedItem
+        axiosPublic.get(`/bookings?status=${status}`)
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                setSortedStatus(data)
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     return (
         <>
-            <div className="form-control class flex flex-col justify-end items-end">
-                <label className="label">
-                    <span className="label-text">Sort item by Status</span>
-                </label>
-                <select defaultValue="default" 
-                // {...register("weight", { required: true })} 
-                onChange={(e) => {handleSort(e.target.value)}
-            } 
-                className="p-3 w-1/6 text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
-                    <option disabled value="default">Select a category</option>
-                    <option value="pending">pending</option>
-                    <option value="canceled">canceled</option>
-                    <option value="on-the-way">on-the-way</option>
-                </select>
-                {/* {errors.weight && <span className="text-red-600">Parcel weight is required</span>} */}
+            <div className="form-control flex justify-end items-end">
+                <form onSubmit={handleSort} className="card-body">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-center text-3xl -mt-10">Search By Status</span>
+                        </label>
+                        <select onChange={handleChange}
+                            defaultValue="default"
+                            name="assignedMan" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
+                            id="">
+                            <option value="default" >Select a delivery man</option>
+                            <option value="pending" >pending</option>
+                            <option value="on-the-way" >on-the-way</option>
+                            <option value="canceled" >canceled</option>
+                        </select>
+                    </div>
+                    <div className="form-control">
+                        <button className="btn btn-accent">Search</button>
+                    </div>
+                </form>
             </div>
+
             <div className="overflow-x-auto mt-10">
                 <table className="table table-xs table-pin-cols">
                     <thead>
@@ -98,7 +125,7 @@ const MyParcel = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, index) => <tr className=""
+                            (sortedStatus?.length > 0 ? sortedStatus : bookings).map((booking, index) => <tr className=""
                                 key={booking._id}
                             >
                                 <th> {index + 1} </th>

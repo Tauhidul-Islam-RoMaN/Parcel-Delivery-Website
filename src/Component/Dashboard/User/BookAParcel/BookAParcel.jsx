@@ -3,15 +3,10 @@ import useAuth from "../../../Hook/useAuth";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
 const BookAParcel = () => {
-
-
     const today = new Date().toISOString().split("T")[0];
     const tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
-
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
-
-
     const { register, reset, handleSubmit, setValue, formState: { errors } } = useForm()
 
     const handleWeightChange = (selectedWeight) => {
@@ -20,8 +15,6 @@ const BookAParcel = () => {
             '2kg': 100,
             'more than 2kg': 150,
         };
-
-        // Update the "Price" input value using setValue
         setValue('price', price[selectedWeight] || '');
     };
 
