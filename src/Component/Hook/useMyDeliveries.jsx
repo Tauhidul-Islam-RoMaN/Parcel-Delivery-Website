@@ -2,19 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useBookingByEmail = () => {
+const useMyDeliveries = () => {
     const axiosPublic =useAxiosPublic()
     const {user} =useAuth()
     console.log(user?.displayName);
-    const {data : bookingsByEmail=[], refetch} = useQuery({
+    const {data : myDeliveries=[], refetch} = useQuery({
         queryKey: ['bookingsByEmail'],
         queryFn: async () =>{
-            const result = await axiosPublic.get(`/bookings?assignedMan=${user?.displayName}`)
+            const result = await axiosPublic.get(`/deliveryMan`)
             return result.data
         }
     })
-    return  [bookingsByEmail, refetch]
+    return  [myDeliveries, refetch]
 }
 
 
-export default useBookingByEmail;
+export default useMyDeliveries;

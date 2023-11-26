@@ -15,13 +15,13 @@ const adminRoute =
         <li> <NavLink to='/dashboard/allDeliveryMan' className="text-lg"> <MdOutlineDeliveryDining></MdOutlineDeliveryDining> All Delivery Man </NavLink> </li>
         <li> <NavLink to='/dashboard/allUsers' className="text-lg"> <FaUsers></FaUsers> All Users </NavLink> </li>
     </>
-// const userRoute =
-//     <>
-//         <h2 className="text-2xl font-medium"> User Dashboard </h2>
-//         <li> <NavLink to='/dashboard/booking' className="text-lg"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
-//         <li> <NavLink to='/dashboard/myParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
-//         <li> <NavLink to='/dashboard/myProfile' className="text-lg"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
-//     </>
+const userRoute =
+    <>
+        <h2 className="text-2xl font-medium"> User Dashboard </h2>
+        <li> <NavLink to='/dashboard/booking' className="text-lg"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
+        <li> <NavLink to='/dashboard/myParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
+        <li> <NavLink to='/dashboard/myProfile' className="text-lg"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
+    </>
 
 const deliveryManRoute =
     <>
@@ -40,13 +40,13 @@ const Dashboard = () => {
                 <div className="md:w-80 md:min-h-screen bg-[#3bbcc0] ">
                     <div className="flex">
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {adminRoute}
+                            {/* {adminRoute} */}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
                             {/* {userRoute} */}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {/* {deliveryManRoute} */}
+                            {deliveryManRoute}
                         </ul>
                     </div>
                     <div className="divider"></div>
