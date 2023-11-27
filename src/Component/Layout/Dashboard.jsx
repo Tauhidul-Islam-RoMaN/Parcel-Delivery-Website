@@ -40,13 +40,13 @@ const Dashboard = () => {
                 <div className="md:w-80 md:min-h-screen bg-[#3bbcc0] ">
                     <div className="flex">
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {/* {adminRoute} */}
+                            {adminRoute}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
                             {/* {userRoute} */}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {deliveryManRoute}
+                            {/* {deliveryManRoute} */}
                         </ul>
                     </div>
                     <div className="divider"></div>

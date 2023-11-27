@@ -1,8 +1,11 @@
-import useDeliveryMan from "../../../Hook/useDeliveryMan";
+import useUsers from "../../../Hook/useUsers";
 
 const AllDeliveryMan = () => {
-    const [deliveryMan, refetch] = useDeliveryMan()
-    console.log(deliveryMan);
+    const role ="delivery-man"
+    const [Users] = useUsers(role)
+    console.log(Users);
+
+
 
     
 
@@ -22,14 +25,14 @@ const AllDeliveryMan = () => {
                 </thead>
                 <tbody>
                     {
-                        deliveryMan?.map((man, index) => <tr className=""
+                        Users?.map((man, index) => <tr className=""
                             key={man._id}
                         >
                             <th> {index + 1} </th>
                             <td>{man.name}</td>
                             <td> {man.number}</td>
                             <td>Number of Parcel Delivered</td>
-                            <td>Average revied</td>
+                            <td>Average Rating</td>
                         </tr>)
                     }
                 </tbody>

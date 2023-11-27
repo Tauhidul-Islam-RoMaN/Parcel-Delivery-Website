@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import useBookingAll from "../../../Hook/useBookingAll";
 import { useEffect, useRef, useState } from "react";
-import useDeliveryMan from "../../../Hook/useDeliveryMan";
+import useDeliveryMan from "../../../Hook/useUsers";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
 
@@ -9,14 +9,15 @@ const AllParcel = () => {
     const [bookings, refetchBooking] = useBookingAll()
     const [deliveryMan, refetch] = useDeliveryMan()
     const [selectedBooking, setSelectedBooking] = useState(null);
-    const [sortedData, setSortedBooking] =useState([])
+    const [sortedData, setSortedBooking] = useState([])
+    const [existingDmId, setExistingDmId] = useState("")
     const [assignedDeliveryMan, setAssignedDeliveryMan] = useState()
     const today = new Date().toISOString().split("T")[0];
     const axiosPublic = useAxiosPublic()
     const bookingRef = useRef(null);
 
     const handleManage = (booking) => {
-        
+
         setSelectedBooking(booking);
         bookingRef.current = booking
     };
@@ -28,6 +29,7 @@ const AllParcel = () => {
         }
     }, [refetch, refetchBooking, selectedBooking]);
     console.log(sortedData);
+
 
 
     const handleChange = (e) => {
@@ -63,17 +65,23 @@ const AllParcel = () => {
         }
         axiosPublic.patch(`/bookings/${bookingRef.current?._id}`, updatedInfo)
             .then(res => {
-                console.log('booking updated', res.data);
-                if (res.data.modifiedCount > 0) {
-                    refetchBooking()
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "DeliveryMan Assigned Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                if (res.data.message === 'dmId already exists') {
+                    return setExistingDmId(res.data?.dmId)
                 }
+                else {
+                    console.log('booking updated', res.data);
+                    if (res.data.modifiedCount > 0) {
+                        refetchBooking()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "DeliveryMan Assigned Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                }
+
             })
             .catch(err => console.log(err))
 
@@ -83,18 +91,18 @@ const AllParcel = () => {
         e.preventDefault()
         const startDate = e.target.startDate.value
         const endDate = e.target.endDate.value
-        console.log(startDate,endDate);
-        console.log(typeof(startDate,endDate));
+        console.log(startDate, endDate);
+        console.log(typeof (startDate, endDate));
 
         axiosPublic.get(`/bookings?startDate=${startDate}&endDate=${endDate}`)
-        .then(response => {
-            const data = response.data;
-            console.log(data);
-            setSortedBooking(data)
-          })
-          .catch(error => {
-            console.error(error);
-          });
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                setSortedBooking(data)
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     return (
@@ -179,7 +187,7 @@ const AllParcel = () => {
                                                             defaultValue="default"
                                                             name="assignedMan" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                                                             id="">
-                                                            <option  value="default" >Select a delivery man</option>
+                                                            <option value="default" >Select a delivery man</option>
                                                             {deliveryMan.map((man) => (
                                                                 <option key={man.email} value={man.name}>
                                                                     {man.name}
@@ -202,6 +210,9 @@ const AllParcel = () => {
                                                         <input type="text" name="dmId" placeholder="DM-0000"
                                                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                                                         />
+                                                        {
+                                                            existingDmId ? <p> Id already exist, Assign as {existingDmId} </p> : null
+                                                        }
                                                     </div>
                                                     <div className="form-control mt-6">
                                                         <button className="btn btn-accent">Assign</button>

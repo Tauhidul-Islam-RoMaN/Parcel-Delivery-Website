@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useDeliveryMan = (role="delivery-man") => {
+const useUsers = (role) => {
     const axiosPublic =useAxiosPublic()
-    const {data : deliveryMan=[], refetch} = useQuery({
-        queryKey: ['deliveryMan'],
+    const {data : Users=[], refetch} = useQuery({
+        queryKey: ['Users'],
         queryFn: async () =>{
             const result = await axiosPublic.get(`/users?role=${role}`)
             console.log(result.data);
@@ -12,9 +12,9 @@ const useDeliveryMan = (role="delivery-man") => {
         }
     })
     
-    return  [deliveryMan, refetch]
+    return  [Users, refetch]
 
 }
 
 
-export default useDeliveryMan;
+export default useUsers;

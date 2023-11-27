@@ -2,12 +2,25 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hook/useAuth";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
+import useBooking from "../../../Hook/useBooking";
+import { useEffect, useState } from "react";
 const BookAParcel = () => {
     const today = new Date().toISOString().split("T")[0];
     const tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0];
     const { user } = useAuth()
+    const [singleBooking, setSingleBooking] = useState()
     const axiosPublic = useAxiosPublic()
     const { register, reset, handleSubmit, setValue, formState: { errors } } = useForm()
+    const [bookings, refetch] = useBooking()
+    console.log(bookings);
+    
+    useEffect(()=> {
+        const sorted = bookings.find(item => item.email == user.email)
+        setSingleBooking(sorted)
+        
+    },[bookings,user?.email])
+    console.log(singleBooking);
+
 
     const handleWeightChange = (selectedWeight) => {
         const price = {
@@ -83,7 +96,7 @@ const BookAParcel = () => {
                         <label className="label">
                             <span className="label-text">Phone Number</span>
                         </label>
-                        <input type="number" name="phone"   {...register("phone", { required: true, maxLength: 11, minLength: 11 })} placeholder="01*********"
+                        <input type="number" name="phone" defaultValue={singleBooking?.phone}  {...register("phone", { required: true, maxLength: 11, minLength: 11 })} placeholder="01*********"
                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                         />
                         {errors.phone && <span className="text-red-600">Please Provide valid Phone Number</span>}

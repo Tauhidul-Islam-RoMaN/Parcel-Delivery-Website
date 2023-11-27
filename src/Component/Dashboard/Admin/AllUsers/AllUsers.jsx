@@ -2,31 +2,23 @@ import Swal from "sweetalert2";
 import useAllUsers from "../../../Hook/useAllUsers";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import useUsers from "../../../Hook/useUsers";
 
 const AllUsers = () => {
-    // const [allUsers, setAllUsers] = useState([])
-    const [count, setCount] = useState("")
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const axiosPublic = useAxiosPublic()
-    const [allUsers,refetch] = useAllUsers(currentPage,itemsPerPage)
+    const role="user"
+    const [Users] = useUsers(role)
+    const [allUsers,refetch] = useAllUsers(currentPage,itemsPerPage,role)
+
 
     useEffect(() => {
         refetch()
     }, [currentPage, itemsPerPage,refetch])
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/usersCount')
-        .then(response => {
-            console.log(response.data);
-            setCount(response.data.count);
-        })
-        .catch(error => {
-            console.error('Error fetching user count:', error);
-        });
-    }, [])
-    // const count = allUsers.length
+    console.log(Users);
+    const count = Users?.length
 
     const numberOfPages = Math.ceil(count / itemsPerPage)
     console.log(count);

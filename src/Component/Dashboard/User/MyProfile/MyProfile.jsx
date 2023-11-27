@@ -5,37 +5,43 @@ import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
 
 const MyProfile = () => {
-    const { register, reset, handleSubmit, formState: { errors } } = useForm()
-    const { user, profileUpdate } = useAuth()
+    const { register, reset, handleSubmit } = useForm()
+    const { user,  profileUpdate } = useAuth()
     const axiosPublic = useAxiosPublic()
 
     const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
     const image_hoisting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
     const onSubmit = async (data) => {
-        console.log(data)
-        // upload image to imgbb and then get the url
-        const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(image_hoisting_api, imageFile, {
-            headers: {
-                'content-Type': 'multipart/form-data'
-            }
-        })
-        if (res.data.success) {
-            profileUpdate(user?.displayName, res.data?.data?.display_url )
-            .then(res => {
-                console.log("photo updated", res);
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Photo updated Successful",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+        try {
+            console.log(data)
+            const imageFile = { image: data.image[0] }
+            const res = await axiosPublic.post(image_hoisting_api, imageFile, {
+                headers: {
+                    'content-Type': 'multipart/form-data'
+                }
             })
-            .catch(err => console.log(err));
+            console.log(res);
+            if (res.data.success) {
+                profileUpdate(user?.displayName, res.data?.data?.display_url)
+                    .then(() => {
+                        console.log("photo updated");
+                        reset()
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Photo updated Successful",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        // loading(false)
+                    })
+            }
+        }
+        catch (error) {
+            console.error("Error updating photo:", error);
+        }
     }
-}
     return (
         <div>
             <div>
