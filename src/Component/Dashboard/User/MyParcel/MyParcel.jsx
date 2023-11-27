@@ -8,8 +8,8 @@ import useAuth from "../../../Hook/useAuth";
 
 const MyParcel = () => {
     const axiosPublic = useAxiosPublic()
-    const [selectedItem, setSelectedItem] = useState()
-    const [sortedStatus, setSortedStatus] = useState()
+    const [selectedItem, setSelectedItem] = useState('')
+    const [sortedStatus, setSortedStatus] = useState('')
     const [selectedBooking, setSelectedBooking] = useState(null);
     const { user } = useAuth()
     console.log(user);
