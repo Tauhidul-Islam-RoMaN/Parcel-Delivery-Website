@@ -2,16 +2,65 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import useBooking from "../../../Hook/useBooking";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAuth from "../../../Hook/useAuth";
 
 
 const MyParcel = () => {
     const axiosPublic = useAxiosPublic()
     const [selectedItem, setSelectedItem] = useState()
     const [sortedStatus, setSortedStatus] = useState()
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const { user } = useAuth()
+    console.log(user);
+    const today = new Date().toISOString().split("T")[0];
+
+
 
     const [bookings, refetch] = useBooking()
+    console.log(selectedBooking);
     refetch()
+
+    const handleReview = (booking) => {
+
+        setSelectedBooking(booking);
+    }
+    useEffect(() => {
+        if (selectedBooking) {
+            document.getElementById('my_modal_5').showModal();
+            refetch()
+        }
+    }, [refetch, selectedBooking]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const userName = e.target.name.value
+        const dmId = e.target.dmId.value
+        const review = e.target.review.value
+        const rating = e.target.rating.value
+        const userPhoto = user?.photoURL
+        const reviewDate = today
+
+
+        const reviewInfo = {
+            userName,dmId,review,rating,userPhoto,reviewDate
+        }
+        axiosPublic.post('/reviews', reviewInfo)
+            .then(res => {
+                console.log('booking updated', res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Review Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => console.log(err))
+
+    };
 
     const handleCancel = (booking) => {
         const cancelBooking = {
@@ -98,6 +147,8 @@ const MyParcel = () => {
                             <option value="pending" >pending</option>
                             <option value="on-the-way" >on-the-way</option>
                             <option value="canceled" >canceled</option>
+                            <option value="delivered" >delivered</option>
+                            <option value="returned" >returned</option>
                         </select>
                     </div>
                     <div className="form-control">
@@ -130,10 +181,10 @@ const MyParcel = () => {
                             >
                                 <th> {index + 1} </th>
                                 <td>{booking.type}</td>
-                                <td>{ }</td>
+                                <td>{ booking.departureDate}</td>
                                 <td>{booking.deliveryDate}</td>
                                 <td>{booking.bookingDate}</td>
-                                <td>{ }</td>
+                                <td>{booking.dmId}</td>
                                 <td>{booking.status}</td>
                                 <td>
                                     {
@@ -142,13 +193,71 @@ const MyParcel = () => {
                                 </td>
                                 <td>
                                     {
-                                        booking.status === "canceled" ? <button className="btn btn-disabled btn-accent btn-sm">Cancel</button> : <button onClick={() => handleCancel(booking)} className="btn btn-accent btn-sm">Cancel</button>
+                                        (booking.status === "canceled" || booking.status === "delivered" || booking.status === "on-the-way") ? <button className="btn btn-disabled btn-accent btn-sm">Cancel</button> : <button onClick={() => handleCancel(booking)} className="btn btn-accent btn-sm">Cancel</button>
                                     }
                                 </td>
-                                <td><button className="btn btn-accent btn-sm">Review</button></td>
                                 <td>
                                     {
-                                        booking.status === "canceled" ? <button className="btn btn-disabled btn-accent btn-sm">Pay</button> : <button className="btn btn-accent btn-sm">Pay</button>
+                                        booking.status === "delivered" ? <button onClick={() => handleReview(booking)} className="btn btn-accent btn-sm">Review</button> : <button className="btn btn-disabled btn-accent btn-sm">Review</button>
+                                    }
+                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                        <div className="modal-box">
+                                            {selectedBooking && (
+                                                <>
+                                                    <div>
+                                                        <p className="py-4">Press ESC key to close</p>
+                                                    </div>
+                                                    <h2 className="text-center font-bold text-3xl "> Give a review </h2>
+                                                    <div className="modal-action">
+                                                        <form onSubmit={handleSubmit} className="card-body">
+                                                            <div className="form-control">
+                                                                <label className="label">
+                                                                    <span className="label-text">User's Name</span>
+                                                                </label>
+                                                                <input type="text" name="name" readOnly defaultValue={selectedBooking.name} placeholder="Users Name"
+                                                                    className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none" />
+                                                            </div>
+                                                            <div className="form-control">
+                                                                <label className="label">
+                                                                    <span className="label-text">User's Photo</span>
+                                                                </label>
+                                                                <input type="text" name="user-img" readOnly defaultValue={user?.photoURL} placeholder="Users Photo"
+                                                                    className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none" />
+                                                            </div>
+                                                            <div className="form-control">
+                                                                <label className="label">
+                                                                    <span className="label-text">Provide Rating out of 5</span>
+                                                                </label>
+                                                                <input type="number" name="rating" step="0.1" max="5" min="1" placeholder="5.0"
+                                                                    className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none" />
+                                                            </div>
+                                                            <div className="form-control">
+                                                                <label className="label">
+                                                                    <span className="label-text">Delivery Man's Id</span>
+                                                                </label>
+                                                                <input type="text" name="dmId" readOnly defaultValue={selectedBooking.dmId} placeholder="Delivery man's Id"
+                                                                    className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none" />
+                                                            </div>
+                                                            <div className="form-control">
+                                                                <label className="label">
+                                                                    <span className="label-text">Feedback </span>
+                                                                </label>
+                                                                <textarea name="review" id="" cols="4" rows="4" placeholder="Provide your feedback here" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"></textarea>
+                                                            </div>
+                                                            <div className="form-control mt-6">
+                                                                <button className="btn btn-accent">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </>
+
+                                            )}
+                                        </div>
+                                    </dialog>
+                                </td>
+                                <td>
+                                    {
+                                        (booking.status === "canceled" || booking.status === "delivered") ? <button className="btn btn-disabled btn-accent btn-sm">Pay</button> : <button className="btn btn-accent btn-sm">Pay</button>
                                     }
                                 </td>
                             </tr>)

@@ -160,7 +160,7 @@ const MyDeliveryList = () => {
                             </td>
                             <td>
                                 {
-                                    booking.status === "delivered" ? <button className="btn btn-disabled btn-accent btn-sm">Deliver</button> : <button onClick={() => handleDelivery(booking)} className="btn btn-accent btn-sm">Deliver</button>
+                                    booking.status === "delivered" ? <button className="btn-accent btn-sm">Delivered</button> : <button onClick={() => handleDelivery(booking)} className="btn btn-accent btn-sm">Deliver</button>
                                 }
                             </td>
 
