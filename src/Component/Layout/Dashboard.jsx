@@ -43,10 +43,10 @@ const Dashboard = () => {
                             {/* {adminRoute} */}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {userRoute}
+                            {/* {userRoute} */}
                         </ul>
                         <ul className="menu flex flex-col md:pt-16 p-4">
-                            {/* {deliveryManRoute} */}
+                            {deliveryManRoute}
                         </ul>
                     </div>
                     <div className="divider"></div>
