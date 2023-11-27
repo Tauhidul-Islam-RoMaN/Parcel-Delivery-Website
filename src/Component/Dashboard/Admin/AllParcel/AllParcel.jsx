@@ -1,20 +1,22 @@
 // import { Link } from "react-router-dom";
 import useBookingAll from "../../../Hook/useBookingAll";
 import { useEffect, useRef, useState } from "react";
-import useDeliveryMan from "../../../Hook/useUsers";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
+import useUsers from "../../../Hook/useUsers";
 
 const AllParcel = () => {
-    const [bookings, refetchBooking] = useBookingAll()
-    const [deliveryMan, refetch] = useDeliveryMan()
+    const role ="delivery-man"
+    const [bookings, refetchBooking] = useBookingAll("")
+    const [deliveryMan, refetch] = useUsers(role)
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [sortedData, setSortedBooking] = useState([])
     const [existingDmId, setExistingDmId] = useState("")
-    const [assignedDeliveryMan, setAssignedDeliveryMan] = useState()
+    const [assignedDeliveryMan, setAssignedDeliveryMan] = useState("")
     const today = new Date().toISOString().split("T")[0];
     const axiosPublic = useAxiosPublic()
     const bookingRef = useRef(null);
+    console.log(bookings,deliveryMan,sortedData);
 
     const handleManage = (booking) => {
 
@@ -189,7 +191,7 @@ const AllParcel = () => {
                                                             id="">
                                                             <option value="default" >Select a delivery man</option>
                                                             {deliveryMan.map((man) => (
-                                                                <option key={man.email} value={man.name}>
+                                                                <option key={man._id} value={man.name}>
                                                                     {man.name}
                                                                 </option>
                                                             ))}

@@ -15,8 +15,6 @@ const MyParcel = () => {
     console.log(user);
     const today = new Date().toISOString().split("T")[0];
 
-
-
     const [bookings, refetch] = useBooking()
     console.log(selectedBooking);
     refetch()
