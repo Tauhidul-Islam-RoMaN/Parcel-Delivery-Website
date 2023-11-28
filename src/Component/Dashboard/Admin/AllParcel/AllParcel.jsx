@@ -16,7 +16,7 @@ const AllParcel = () => {
     const today = new Date().toISOString().split("T")[0];
     const axiosPublic = useAxiosPublic()
     const bookingRef = useRef(null);
-    console.log(bookings,deliveryMan,sortedData);
+    // console.log(bookings,deliveryMan,sortedData);
 
     const handleManage = (booking) => {
 

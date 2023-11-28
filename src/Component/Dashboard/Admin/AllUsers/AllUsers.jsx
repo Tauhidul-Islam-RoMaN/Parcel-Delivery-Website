@@ -1,30 +1,56 @@
 import Swal from "sweetalert2";
-import useAllUsers from "../../../Hook/useAllUsers";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import { useEffect, useState } from "react";
-import useUsers from "../../../Hook/useUsers";
+import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
-    const axiosPublic = useAxiosPublic()
-    const role="user"
-    const [Users] = useUsers(role)
-    const [allUsers,refetch] = useAllUsers(currentPage,itemsPerPage,role)
+    const [sortedUsers, setSortedUsers] =useState([])
+    const [count, setCount] = useState("");
 
+    // const role="user"
+    // const [Users] = useUsers(role)
+    // const [allUsers,refetch] = useAllUsers(currentPage,itemsPerPage,role)
+
+    // const axiosPublic =useAxiosPublic()
+    // const {data : sortedUsers=[], refetch} = useQuery({
+    //     queryKey: ['sortedUsers'],
+    //     queryFn: async () =>{
+    //         const result = await axiosPublic.get(`/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+    //         return result.data
+    //     }
+    // })
+    useEffect(() => {
+        fetch(`http://localhost:5000/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setSortedUsers(data)
+        })
+    },[currentPage,itemsPerPage])
+
+    console.log(sortedUsers);
 
     useEffect(() => {
-        refetch()
-    }, [currentPage, itemsPerPage,refetch])
-
-    console.log(Users);
-    const count = Users?.length
+        fetch('http://localhost:5000/usersCount')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCount(data.count)
+            })
+    }, [])
+    
+    // useEffect(() => {
+    //     refetch()
+    // }, [currentPage, itemsPerPage,refetch])
 
     const numberOfPages = Math.ceil(count / itemsPerPage)
-    console.log(count);
-    console.log(numberOfPages);
+
     const pages = [...Array(numberOfPages).keys()];
     console.log(pages);
+    console.log(count);
+    console.log(numberOfPages);
 
     const handleItemsPerPage = e => {
         const userPage = parseInt(e.target.value);
@@ -146,7 +172,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            allUsers?.map((user, index) => <tr className=""
+                            sortedUsers?.map((user, index) => <tr className=""
                                 key={user._id}
                             >
                                 <th> {index + 1} </th>
@@ -157,7 +183,8 @@ const AllUsers = () => {
                                 <td> {user.role}</td>
                                 <td>
                                     {
-                                        user?.role === "user" ? <button onClick={() => handleDeliveryMan(user)} className="btn btn-accent btn-sm">Make Delivery Man</button> : <button className="btn btn-accent btn-disabled btn-sm">Make Delivery Man</button>
+                                        user?.role === "user" ? <button onClick={() => handleDeliveryMan(user)} className="btn btn-accent btn-sm">Make Delivery Man</button>
+                                         : <button className="btn btn-accent btn-disabled btn-sm">Make Delivery Man</button>
                                     }
                                 </td>
                                 <td>

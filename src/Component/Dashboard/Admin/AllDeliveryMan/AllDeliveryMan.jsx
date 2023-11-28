@@ -1,9 +1,18 @@
-import useUsers from "../../../Hook/useUsers";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../Hook/useAxiosPublic";
 
 const AllDeliveryMan = () => {
-    const role ="delivery-man"
-    const [Users] = useUsers(role)
-    console.log(Users);
+    
+    const axiosPublic =useAxiosPublic()
+    const {data : deliveryMan=[], refetch} = useQuery({
+        queryKey: ['deliveryMan'],
+        queryFn: async () =>{
+            const data = await axiosPublic.get('/sortedDeliveryMan')
+            return (data.data)
+        }
+    })
+    console.log(deliveryMan);
+    
 
 
 
@@ -25,7 +34,7 @@ const AllDeliveryMan = () => {
                 </thead>
                 <tbody>
                     {
-                        Users?.map((man, index) => <tr className=""
+                        deliveryMan?.map((man, index) => <tr className=""
                             key={man._id}
                         >
                             <th> {index + 1} </th>

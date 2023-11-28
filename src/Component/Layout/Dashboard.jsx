@@ -47,7 +47,7 @@ const Dashboard = () => {
     const [selectRole, setSelectRole] = useState([])
     const { loading, user } = useAuth()
     useEffect(() => {
-        const sorted = Users.filter(man => man.email === user?.email)
+        const sorted = Users?.filter(man => man.email === user?.email)
         setSelectRole(sorted)
         refetch()
     }, [Users, user?.email,refetch])
