@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
-import useBooking from "../../../Hook/useBooking";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hook/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 
 const MyParcel = () => {
@@ -15,9 +15,15 @@ const MyParcel = () => {
     console.log(user);
     const today = new Date().toISOString().split("T")[0];
 
-    const [bookings, refetch] = useBooking()
-    console.log(selectedBooking);
-    refetch()
+    const {data : bookings=[], refetch} = useQuery({
+        queryKey: ['bookings'],
+        queryFn: async () =>{
+            const result = await axiosPublic.get(`/bookings?email=${user?.email}`)
+            return result.data
+        }
+    })
+    console.log(bookings);
+    
 
     const handleReview = (booking) => {
 

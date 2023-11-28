@@ -1,34 +1,35 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortedUsers, setSortedUsers] =useState([])
+    // const [sortedUsers, setSortedUsers] =useState([])
     const [count, setCount] = useState("");
-    const axiosPublic =useAxiosPublic()
+    // const axiosPublic =useAxiosPublic()
 
     // const role="user"
     // const [Users] = useUsers(role)
     // const [allUsers,refetch] = useAllUsers(currentPage,itemsPerPage,role)
 
-    // const axiosPublic =useAxiosPublic()
-    // const {data : sortedUsers=[], refetch} = useQuery({
-    //     queryKey: ['sortedUsers'],
-    //     queryFn: async () =>{
-    //         const result = await axiosPublic.get(`/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
-    //         return result.data
-    //     }
-    // })
-    useEffect(() => {
-        fetch(`http://localhost:5000/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setSortedUsers(data)
-        })
-    },[currentPage,itemsPerPage])
+    const axiosPublic =useAxiosPublic()
+    const {data : sortedUsers=[], refetch} = useQuery({
+        queryKey: ['sortedUsers'],
+        queryFn: async () =>{
+            const result = await axiosPublic.get(`/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+            return result.data
+        }
+    })
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //         setSortedUsers(data)
+    //     })
+    // },[currentPage,itemsPerPage])
 
     console.log(sortedUsers);
 
@@ -41,9 +42,9 @@ const AllUsers = () => {
             })
     }, [])
     
-    // useEffect(() => {
-    //     refetch()
-    // }, [currentPage, itemsPerPage,refetch])
+    useEffect(() => {
+        refetch()
+    }, [currentPage, itemsPerPage,refetch])
 
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
@@ -80,6 +81,7 @@ const AllUsers = () => {
             email: user?.email,
             number: user?.number
         }
+        refetch()
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert the role!",
@@ -95,6 +97,7 @@ const AllUsers = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.modifiedCount > 0) {
+                                refetch()
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -132,6 +135,7 @@ const AllUsers = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.modifiedCount > 0) {
+                                refetch()
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -212,12 +216,12 @@ const AllUsers = () => {
                     <select value={itemsPerPage} className="bg-[#3bbcc0]" onChange={handleItemsPerPage} name="" id="">
                         <option value="3">3</option>
                         <option value="5" defaultValue={5}>5</option>
-                        <option value="9" >10</option>
+                        <option value="10" >10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
-                        <option value="30">50</option>
-                        <option value="30">100</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                     </select>
                 </h3>
         </>

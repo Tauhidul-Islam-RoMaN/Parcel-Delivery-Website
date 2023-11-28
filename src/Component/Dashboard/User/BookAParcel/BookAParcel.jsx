@@ -54,6 +54,7 @@ const BookAParcel = () => {
                     console.log(res.data);
                     console.log('booking added to the server');
                     reset()
+                    refetch()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
