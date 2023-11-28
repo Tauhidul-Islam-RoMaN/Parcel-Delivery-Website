@@ -1,13 +1,13 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortedUsers, setSortedUsers] =useState([])
     const [count, setCount] = useState("");
+    const axiosPublic =useAxiosPublic()
 
     // const role="user"
     // const [Users] = useUsers(role)
@@ -95,7 +95,6 @@ const AllUsers = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.modifiedCount > 0) {
-                                refetch()
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -133,7 +132,6 @@ const AllUsers = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.modifiedCount > 0) {
-                                refetch()
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
