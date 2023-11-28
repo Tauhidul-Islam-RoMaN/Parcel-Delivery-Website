@@ -3,12 +3,12 @@ import useBookingAll from "../../../Hook/useBookingAll";
 import { useEffect, useRef, useState } from "react";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
-import useUsers from "../../../Hook/useUsers";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const AllParcel = () => {
-    const role ="delivery-man"
+    // const role ="delivery-man"
     const [bookings, refetchBooking] = useBookingAll("")
-    const [deliveryMan, refetch] = useUsers(role)
+    // const [deliveryMan, refetch] = useUsers(role)
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [sortedData, setSortedBooking] = useState([])
     const [existingDmId, setExistingDmId] = useState("")
@@ -16,7 +16,17 @@ const AllParcel = () => {
     const today = new Date().toISOString().split("T")[0];
     const axiosPublic = useAxiosPublic()
     const bookingRef = useRef(null);
+    const queryClient = useQueryClient();
     // console.log(bookings,deliveryMan,sortedData);
+
+    const { data: deliveryMan = [], refetch } = useQuery({
+        queryKey: ['deliveryMan'],
+        queryFn: async () => {
+            const data = await axiosPublic.get('/sortedDeliveryMan')
+            return (data.data)
+        }
+    })
+    console.log(deliveryMan);
 
     const handleManage = (booking) => {
 
@@ -67,21 +77,22 @@ const AllParcel = () => {
         }
         axiosPublic.patch(`/bookings/${bookingRef.current?._id}`, updatedInfo)
             .then(res => {
-                if (res.data.message === 'dmId already exists') {
-                    return setExistingDmId(res.data?.dmId)
+                console.log('booking updated', res.data);
+                if (!res.data.insertedId) {
+                    setExistingDmId(res.data.dmId)
                 }
-                else {
-                    console.log('booking updated', res.data);
-                    if (res.data.modifiedCount > 0) {
-                        refetchBooking()
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "DeliveryMan Assigned Successfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }
+                if (res.data.modifiedCount > 0) {
+                    queryClient.invalidateQueries('deliveryMan')
+                    refetchBooking()
+                    e.target.reset();
+
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "DeliveryMan Assigned Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
 
             })
@@ -213,7 +224,7 @@ const AllParcel = () => {
                                                             className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                                                         />
                                                         {
-                                                            existingDmId ? <p> Id already exist, Assign as {existingDmId} </p> : null
+                                                            existingDmId && <p className="text-red-600 font-medium text-xl"> Id already exist, Assign as {existingDmId} </p>
                                                         }
                                                     </div>
                                                     <div className="form-control mt-6">

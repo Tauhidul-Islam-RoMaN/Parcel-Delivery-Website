@@ -24,7 +24,7 @@ const Register = () => {
                             name: data.name,
                             email: data.email,
                             role: data.userType,
-                            // number:data.number,
+                            number:data.number,
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
@@ -91,14 +91,14 @@ const Register = () => {
                         {errors.email && <span className="text-red-600">email is required</span>}
 
                     </div>
-                    {/* <div className="form-control">
+                    <div className="form-control">
                         <label className="label">
                             <span className="label-text">Phone Number</span>
                         </label>
                         <input type="number" name="number" {...register("number", { required: true, maxLength:11, minLength:11 })} placeholder="number" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none" />
                         {errors.number && <span className="text-red-600">Provide Valid Phone Number</span>}
 
-                    </div> */}
+                    </div>
                     <div className="form-control">
                         <div className="form-control w-full">
                             <label className="label">
