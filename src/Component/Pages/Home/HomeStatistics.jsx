@@ -9,7 +9,7 @@ const HomeStatistics = () => {
   const [booking, setBooking] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('https://assignment-12-server-pied.vercel.app/users')
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -19,7 +19,7 @@ const HomeStatistics = () => {
 
   
   useEffect(() => {
-    fetch('http://localhost:5000/bookings')
+    fetch('https://assignment-12-server-pied.vercel.app/bookings')
       .then(res => res.json())
       .then(data => {
         console.log(data);

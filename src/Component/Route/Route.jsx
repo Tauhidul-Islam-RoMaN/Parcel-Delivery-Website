@@ -72,7 +72,7 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path: 'updateParcel/:id',
                 element: <UpdateParcel></UpdateParcel>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://assignment-12-server-pied.vercel.app/bookings/${params.id}`)
             },
             {
                 path: 'myParcel',
