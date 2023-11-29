@@ -23,7 +23,7 @@ const NavBar = () => {
         <>
             <li> <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "btn btn-warning " : ""}>Home</NavLink></li>
             <li> <NavLink to="/dashboard" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "btn whitespace-nowrap btn-warning " : ""}>DashBoard</NavLink></li>
-            <li> <NavLink to="/notification" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "btn btn-warning " : ""}><button className="btn btn-ghost btn-circle">
+            <li> <NavLink ><button className="btn btn-ghost btn-circle">
                 <div className="indicator">
                     <IoIosNotificationsOutline className='text-2xl'></IoIosNotificationsOutline>
                     <span className="badge badge-xs badge-primary indicator-item"></span>
@@ -69,13 +69,23 @@ const NavBar = () => {
                     <div className="navbar-end">
                         {user?.photoURL ?
                             <div className="dropdown dropdown-end">
-                                <label tabIndex={0} className="">
-                                    <img className="md:w-24 w-14 md:mr-10 rounded-full" src={user?.photoURL} alt="" />
-                                </label>
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-48 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                    </div>
+                                </div>
                                 <ul tabIndex={0} className="flex items-center justify-center text-center flex-col gap-1 dropdown-content mt-4 z-10 p-4 shadow bg-[#3bbcc0] rounded-box w-40">
                                     {subNavLinks}
                                 </ul>
                             </div> : ''}
+                        {/* <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} >
+                                        <img className="md:w-24 w-14 md:mr-10 rounded-full" src={user?.photoURL} alt="" />
+                                    </label>
+                                    <ul tabIndex={0} className="flex items-center justify-center text-center flex-col gap-1 dropdown-content mt-4 z-10 p-4 shadow bg-[#3bbcc0] rounded-box w-40">
+                                        {subNavLinks}
+                                    </ul>
+                                </div> : ''} */}
                     </div>
                 </div>
             </div>

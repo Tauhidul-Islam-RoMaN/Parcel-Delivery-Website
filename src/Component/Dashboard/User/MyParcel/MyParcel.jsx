@@ -15,15 +15,15 @@ const MyParcel = () => {
     console.log(user);
     const today = new Date().toISOString().split("T")[0];
 
-    const {data : bookings=[], refetch} = useQuery({
+    const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings'],
-        queryFn: async () =>{
+        queryFn: async () => {
             const result = await axiosPublic.get(`/bookings?email=${user?.email}`)
             return result.data
         }
     })
     console.log(bookings);
-    
+
 
     const handleReview = (booking) => {
 
@@ -47,7 +47,7 @@ const MyParcel = () => {
 
 
         const reviewInfo = {
-            userName,dmId,review,rating,userPhoto,reviewDate
+            userName, dmId, review, rating, userPhoto, reviewDate
         }
         axiosPublic.post('/reviews', reviewInfo)
             .then(res => {
@@ -125,10 +125,13 @@ const MyParcel = () => {
         e.preventDefault()
         const status = selectedItem
         axiosPublic.get(`/bookings?status=${status}`)
+            // axiosPublic.get(`/bookings?status=${status}&user=${user?.email}`) 
             .then(response => {
                 const data = response.data;
                 console.log(data);
-                setSortedStatus(data)
+                const filteredData = data.filter(item => item.email === user?.email)
+                console.log(filteredData);
+                setSortedStatus(filteredData)
             })
             .catch(error => {
                 console.error(error);
@@ -147,12 +150,12 @@ const MyParcel = () => {
                             defaultValue="default"
                             name="assignedMan" className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none"
                             id="">
-                            <option value="default" >Select a delivery man</option>
+                            <option value="default" >Choose Your Status</option>
                             <option value="pending" >pending</option>
                             <option value="on-the-way" >on-the-way</option>
                             <option value="canceled" >canceled</option>
                             <option value="delivered" >delivered</option>
-                            <option value="returned" >returned</option>
+                            {/* <option value="returned" >returned</option> */}
                         </select>
                     </div>
                     <div className="form-control">
@@ -176,16 +179,19 @@ const MyParcel = () => {
                             <th>Cancel</th>
                             <th>Review</th>
                             <th>Pay Now</th>
+
                         </tr>
                     </thead>
                     <tbody>
+                        {/* sortedStatus?.length = 0 && <p className="flex items-center justify-center text-red-600"> No data for this status </p> */}
+
                         {
                             (sortedStatus?.length > 0 ? sortedStatus : bookings).map((booking, index) => <tr className=""
                                 key={booking._id}
                             >
                                 <th> {index + 1} </th>
                                 <td>{booking.type}</td>
-                                <td>{ booking.departureDate}</td>
+                                <td>{booking.departureDate}</td>
                                 <td>{booking.deliveryDate}</td>
                                 <td>{booking.bookingDate}</td>
                                 <td>{booking.dmId}</td>

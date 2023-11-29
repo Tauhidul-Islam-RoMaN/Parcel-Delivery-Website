@@ -25,6 +25,8 @@ const Register = () => {
                             email: data.email,
                             role: data.userType,
                             number:data.number,
+                            photo: data.photo
+
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
@@ -107,7 +109,7 @@ const Register = () => {
                             <select defaultValue="default" {...register("userType", { required: true })} className="p-3 w-full text-sm text-black bg-gray-100 border-b-8 border-gray-100 focus:border-[#3bbcc0] rounded focus:outline-none">
                                 <option disabled value="default">Select a category</option>
                                 <option value="user">User</option>
-                                <option value="Delivery Man">Delivery Man</option>
+                                {/* <option value="delivery-man">Delivery Man</option> */}
                             </select>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const MyProfile = () => {
     const { register, reset, handleSubmit } = useForm()
-    const { user,  profileUpdate } = useAuth()
+    const { user, setLoading,  profileUpdate } = useAuth()
     const axiosPublic = useAxiosPublic()
 
     const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
@@ -34,7 +34,7 @@ const MyProfile = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        // loading(false)
+                        setLoading(false)
                     })
             }
         }

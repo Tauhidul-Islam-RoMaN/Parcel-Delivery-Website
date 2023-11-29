@@ -32,6 +32,7 @@ const AllParcel = () => {
 
         setSelectedBooking(booking);
         bookingRef.current = booking
+        
     };
     useEffect(() => {
         if (selectedBooking) {

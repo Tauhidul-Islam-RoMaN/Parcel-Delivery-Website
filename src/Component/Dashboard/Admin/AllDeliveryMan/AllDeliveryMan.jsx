@@ -7,11 +7,12 @@ const AllDeliveryMan = () => {
     const {data : deliveryMan=[], refetch} = useQuery({
         queryKey: ['deliveryMan'],
         queryFn: async () =>{
-            const data = await axiosPublic.get('/sortedDeliveryMan')
+            const data = await axiosPublic.get('/deliverymanWithRating')
             return (data.data)
         }
     })
     console.log(deliveryMan);
+    
     
 
 
@@ -40,8 +41,8 @@ const AllDeliveryMan = () => {
                             <th> {index + 1} </th>
                             <td>{man.name}</td>
                             <td> {man.number}</td>
-                            <td>Number of Parcel Delivered</td>
-                            <td>Average Rating</td>
+                            <td>{man.numParcelsDelivered}</td>
+                            <td>{man.avgRating}</td>
                         </tr>)
                     }
                 </tbody>
