@@ -12,24 +12,24 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 // const adminRoute =
 //     <>
 //         <h2 className="text-2xl font-medium"> Admin Dashboard </h2>
-//         <li> <NavLink to='/dashboard/statistics' className="text-lg"> <FcStatistics></FcStatistics> Statistics </NavLink> </li>
-//         <li> <NavLink to='/dashboard/allParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> All Parcel </NavLink> </li>
-//         <li> <NavLink to='/dashboard/allDeliveryMan' className="text-lg"> <MdOutlineDeliveryDining></MdOutlineDeliveryDining> All Delivery Man </NavLink> </li>
-//         <li> <NavLink to='/dashboard/allUsers' className="text-lg"> <FaUsers></FaUsers> All Users </NavLink> </li>
+//         <li> <NavLink to='/dashboard/statistics' className="text-lg text-black"> <FcStatistics></FcStatistics> Statistics </NavLink> </li>
+//         <li> <NavLink to='/dashboard/allParcel' className="text-lg text-black"> <FaBoxOpen></FaBoxOpen> All Parcel </NavLink> </li>
+//         <li> <NavLink to='/dashboard/allDeliveryMan' className="text-lg text-black"> <MdOutlineDeliveryDining></MdOutlineDeliveryDining> All Delivery Man </NavLink> </li>
+//         <li> <NavLink to='/dashboard/allUsers' className="text-lg text-black"> <FaUsers></FaUsers> All Users </NavLink> </li>
 //     </>
 // const userRoute =
 //     <>
 //         <h2 className="text-2xl font-medium"> User Dashboard </h2>
-//         <li> <NavLink to='/dashboard/booking' className="text-lg"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
-//         <li> <NavLink to='/dashboard/myParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
-//         <li> <NavLink to='/dashboard/myProfile' className="text-lg"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
+//         <li> <NavLink to='/dashboard/booking' className="text-lg text-black"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
+//         <li> <NavLink to='/dashboard/myParcel' className="text-lg text-black"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
+//         <li> <NavLink to='/dashboard/myProfile' className="text-lg text-black"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
 //     </>
 
 // const deliveryManRoute =
 //     <>
 //         <h2 className="text-2xl font-medium"> Delivery Man Dashboard </h2>
-//         <li> <NavLink to='/dashboard/deliveryList' className="text-lg"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
-//         <li> <NavLink to='/dashboard/review' className="text-lg"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
+//         <li> <NavLink to='/dashboard/deliveryList' className="text-lg text-black"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
+//         <li> <NavLink to='/dashboard/review' className="text-lg text-black"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
 //     </>
 
 const Dashboard = () => {
@@ -71,11 +71,11 @@ const Dashboard = () => {
                             selectRole[0]?.role === "admin" &&
                             <ul className="menu flex flex-col md:pt-16 p-4">
                                 <>
-                                    <h2 className="text-2xl font-medium"> Admin Dashboard </h2>
-                                    <li> <NavLink to='/dashboard/statistics' className="text-lg"> <FcStatistics></FcStatistics> Statistics </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/allParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> All Parcel </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/allDeliveryMan' className="text-lg"> <MdOutlineDeliveryDining></MdOutlineDeliveryDining> All Delivery Man </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/allUsers' className="text-lg"> <FaUsers></FaUsers> All Users </NavLink> </li>
+                                    <h2 className="text-2xl text-black font-medium"> Admin Dashboard </h2>
+                                    <li> <NavLink to='/dashboard/statistics' className="text-lg text-black"> <FcStatistics></FcStatistics> Statistics </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/allParcel' className="text-lg text-black"> <FaBoxOpen></FaBoxOpen> All Parcel </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/allDeliveryMan' className="text-lg text-black"> <MdOutlineDeliveryDining></MdOutlineDeliveryDining> All Delivery Man </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/allUsers' className="text-lg text-black"> <FaUsers></FaUsers> All Users </NavLink> </li>
                                 </>
                             </ul>
                         }
@@ -83,10 +83,10 @@ const Dashboard = () => {
                             selectRole[0]?.role === "user" &&
                             <ul className="menu flex flex-col md:pt-16 p-4">
                                 <>
-                                    <h2 className="text-2xl font-medium"> User Dashboard </h2>
-                                    <li> <NavLink to='/dashboard/booking' className="text-lg"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/myParcel' className="text-lg"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/myProfile' className="text-lg"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
+                                    <h2 className="text-2xl text-black font-medium"> User Dashboard </h2>
+                                    <li> <NavLink to='/dashboard/booking' className="text-lg text-black"> <BiPurchaseTagAlt></BiPurchaseTagAlt> Book A Parcel </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/myParcel' className="text-lg text-black"> <FaBoxOpen></FaBoxOpen> My Parcel </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/myProfile' className="text-lg text-black"> <AiOutlineProfile></AiOutlineProfile> My Profile </NavLink> </li>
                                 </>
                             </ul>
                         }
@@ -94,16 +94,16 @@ const Dashboard = () => {
                             selectRole[0]?.role === "delivery-man" &&
                             <ul className="menu flex flex-col md:pt-16 p-4">
                                 <>
-                                    <h2 className="text-2xl font-medium"> Delivery Man Dashboard </h2>
-                                    <li> <NavLink to='/dashboard/deliveryList' className="text-lg"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
-                                    <li> <NavLink to='/dashboard/review' className="text-lg"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
+                                    <h2 className="text-2xl text-black font-medium"> Delivery Man Dashboard </h2>
+                                    <li> <NavLink to='/dashboard/deliveryList' className="text-lg text-black"> <FaListUl></FaListUl> My Delivery List </NavLink> </li>
+                                    <li> <NavLink to='/dashboard/review' className="text-lg text-black"> <FaRegStar></FaRegStar> My Review </NavLink> </li>
                                 </>
                             </ul>
                         }
                     </div>
                     <div className="divider"></div>
                     <>
-                        <ul className="menu flex flex-col text-lg  p-4">
+                        <ul className="menu flex flex-col text-lg text-black  p-4">
                             <li> <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "btn btn-warning " : ""}> <FaHome></FaHome> Home</NavLink></li>
                         </ul>
 
