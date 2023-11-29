@@ -18,12 +18,12 @@ const AllUsers = () => {
     const {data : sortedUsers=[], refetch} = useQuery({
         queryKey: ['sortedUsers'],
         queryFn: async () =>{
-            const result = await axiosPublic.get(`/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+            const result = await axiosPublic.get(`/allUsersTable?page=${currentPage}&size=${itemsPerPage}`)
             return result.data
         }
     })
     // useEffect(() => {
-    //     fetch(`https://assignment-12-server-pied.vercel.app/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+    //     fetch(`http://localhost:5000/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
     //     .then(res => res.json())
     //     .then(data => {
     //         console.log(data);
@@ -34,7 +34,7 @@ const AllUsers = () => {
     console.log(sortedUsers);
 
     useEffect(() => {
-        fetch('https://assignment-12-server-pied.vercel.app/usersCount')
+        fetch('http://localhost:5000/usersCount')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -165,7 +165,6 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>No. of Booking</th>
-                            <th>Total Amount</th>
                             <th>Role</th>
                             <th>Make DeliveryMan</th>
                             <th>Make Admin</th>
@@ -180,8 +179,7 @@ const AllUsers = () => {
                                 <th> {index + 1} </th>
                                 <td>{user.name}</td>
                                 <td> {user.number}</td>
-                                <td>Total Booking</td>
-                                <td>Total amount</td>
+                                <td> {user.bookingCount}</td>
                                 <td> {user.role}</td>
                                 <td>
                                     {
