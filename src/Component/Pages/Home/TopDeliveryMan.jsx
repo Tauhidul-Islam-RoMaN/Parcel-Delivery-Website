@@ -6,7 +6,7 @@ const TopDeliveryMan = () => {
     const [topDeliveryMan, setTopDeliveryMan] = useState()
 
     useEffect(() => {
-        fetch('/public/deliveryman.json')
+        fetch('/deliveryman.json')
             .then(res => res.json())
             .then(data => {
                 setTopDeliveryMan(data)
