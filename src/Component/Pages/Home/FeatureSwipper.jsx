@@ -15,7 +15,7 @@ import 'swiper/css/effect-cards';
 const FeatureSwipper = () => {
     const [features, setFeatures] = useState()
     useEffect(() => {
-        fetch('http://localhost:5000/features')
+        fetch('https://assignment-12-server-pied.vercel.app/features')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
