@@ -27,7 +27,7 @@ const FeatureSwipper = () => {
     return (
         <>
             <div className='bg-[#3bbcc0]'>
-                <h2 className='font-bold text-3xl text-center py-10'> --Why Us-- </h2>
+                <h2 className='font-bold text-3xl text-black text-center py-10'> --Why Us-- </h2>
                 <Swiper
                     effect={'cards'}
                     grabCursor={true}

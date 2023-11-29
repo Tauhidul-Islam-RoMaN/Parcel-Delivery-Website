@@ -14,7 +14,7 @@ const TopDeliveryMan = () => {
     }, [topDeliveryMan])
     return (
         <div className="bg-[#3bbcc0] py-16">
-            <h2 className='font-bold text-3xl text-center py-10'> --Meet Our Top Delivery Man-- </h2>
+            <h2 className='font-bold text-3xl text-center text-black py-10'> --Meet Our Top Delivery Man-- </h2>
             <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-10">
 
                 {topDeliveryMan?.map(deliveryMan => <div
