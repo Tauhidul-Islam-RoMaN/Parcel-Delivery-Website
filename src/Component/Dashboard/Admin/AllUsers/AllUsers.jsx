@@ -23,7 +23,7 @@ const AllUsers = () => {
         }
     })
     // useEffect(() => {
-    //     fetch(`https://assignment-12-server-pied.vercel.app/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
+    //     fetch(`http://localhost:5000/sortedUsersWithPage?page=${currentPage}&size=${itemsPerPage}`)
     //     .then(res => res.json())
     //     .then(data => {
     //         console.log(data);
@@ -34,7 +34,7 @@ const AllUsers = () => {
     console.log(sortedUsers);
 
     useEffect(() => {
-        fetch('https://assignment-12-server-pied.vercel.app/usersCount')
+        fetch('http://localhost:5000/usersCount')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

@@ -275,6 +275,7 @@ const MyParcel = () => {
                     </tbody>
                 </table>
             </div>
+            {/* <MyModal></MyModal> */}
         </>
 
     );
