@@ -1,5 +1,10 @@
 website live link : https://assignment-12-ac700.web.app/
 
+1. Admin email: admin@admin.com
+2. Admin password: 1234T!
+3. Delivery Men’s email: deliveryman@example.com
+4. Delivery Men’s password: 1234T!
+
 This a parcel delivery website. The key features of this website is given below
 1. You can book a parcel
 2. You can see all your booked parcel in one place.
